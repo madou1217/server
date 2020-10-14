@@ -92,7 +92,7 @@ abstract class Fetcher {
 	 */
 	protected function fetch($ETag, $content) {
 		$appstoreenabled = $this->config->getSystemValue('appstoreenabled', true);
-		if ((int)$this->config->getAppValue('settings', 'appstore-fetcher-lastFailure', 0) > time() - self::RETRY_AFTER_FAILURE_SECONDS) {
+		if ((int)$this->config->getAppValue('settings', 'appstore-fetcher-lastFailure', '0') > time() - self::RETRY_AFTER_FAILURE_SECONDS) {
 			return [];
 		}
 
@@ -114,7 +114,7 @@ abstract class Fetcher {
 		try {
 			$response = $client->get($this->getEndpoint(), $options);
 		} catch (ConnectException $e) {
-			$this->config->setAppValue('settings', 'appstore-fetcher-lastFailure', time());
+			$this->config->setAppValue('settings', 'appstore-fetcher-lastFailure', (string)time());
 			throw $e;
 		}
 
