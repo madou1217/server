@@ -164,6 +164,7 @@ class SCSSCacher {
 			$retry = 0;
 			sleep(1);
 			while ($retry < 10) {
+				$this->config->clearCachedAppConfig();
 				if (!$this->variablesChanged() && $this->isCached($fileNameCSS, $app)) {
 					// Inject icons vars css if any
 					$this->lockingCache->remove($lockKey);

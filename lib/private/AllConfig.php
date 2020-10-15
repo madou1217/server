@@ -233,6 +233,16 @@ class AllConfig implements \OCP\IConfig {
 	}
 
 	/**
+	 * Clear all the cached app config values
+	 *
+	 * WARNING: do not use this - this is only for usage with the SCSSCacher to
+	 * clear the memory cache of the app config
+	 */
+	public function clearCachedAppConfig() {
+		\OC::$server->query(\OC\AppConfig::class)->clearCachedConfig();
+	}
+
+	/**
 	 * Removes all keys in appconfig belonging to the app
 	 *
 	 * @param string $appName the appName the configs are stored under

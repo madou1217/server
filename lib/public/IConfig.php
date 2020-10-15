@@ -257,4 +257,17 @@ interface IConfig {
 	 * @since 8.0.0
 	 */
 	public function getUsersForUserValue($appName, $key, $value);
+
+
+	/**
+	 * Clear all the cached app config values
+	 *
+	 * WARNING: do not use this - this is only for usage with the SCSSCacher to
+	 * clear the memory cache of the app config
+	 *
+	 * @internal
+	 * @since 21.0.0
+	 * @deprecated 21.0.0
+	 */
+	public function clearCachedAppConfig();
 }
